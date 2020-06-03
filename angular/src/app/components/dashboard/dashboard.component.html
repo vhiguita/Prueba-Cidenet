@@ -1,0 +1,184 @@
+<ng-template #modalContentProducto let-c="close" let-d="dismiss" id="modal-container">
+  <form name="form" (ngSubmit)="f1.form.valid && crearProducto(); f1.form.valid && c('Al guardar')" #f1="ngForm" novalidate>
+    <div class="modal-header">
+      <h4 class="modal-title">Agregar productos</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+      <div class="form-row col-md-8">
+        <div class="form-group col-md-8">
+          <label>Producto</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="producto" name="producto" [(ngModel)]="producto.product" #product="ngModel" required>
+          </div>
+          <div *ngIf="product.invalid && ( (product.dirty || product.touched) || f1.submitted)" class="alert alert-danger">
+            <div *ngIf="product.errors.required">
+              El campo de producto no puede ser vacío.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary m-b-20">Guardar</button>
+      <button type="button" class="btn btn-primary m-b-20" (click)="c('Close click')">Cancelar</button>
+    </div>
+
+
+  </form>
+</ng-template>
+<ng-template #modalContentKardex let-c="close" let-d="dismiss" id="modal-container">
+  <form name="form" (ngSubmit)="f1.form.valid && crearKardex(); f1.form.valid && c('Al guardar')" #f1="ngForm" novalidate>
+    <div class="modal-header">
+      <h4 class="modal-title">Kardex</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+     <div class="form-row col-md-12">
+      <div class="form-group col-md-6">
+          <label>Producto</label>
+          <div class="input-group">
+            <select class="form-control" name="kardexProducto" id="KardexProducto" [(ngModel)]="kardex.codigoProducto" #codigoProducto="ngModel" required>
+              <option value="" disabled>Seleccione el producto</option>
+              <option *ngFor="let s of productos" [ngValue]="s.code">
+                {{s.code}} - {{ s.product}}
+              </option>
+            </select>
+          </div>
+          <div *ngIf="codigoProducto.invalid && ( (codigoProducto.dirty || codigoProducto.touched) || f1.submitted)" class="alert alert-danger">
+            <div *ngIf="codigoProducto.errors.required">
+              El código del producto es requerido.
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-3">
+            <label>Operación</label>
+            <div class="input-group">
+              <select class="form-control" name="kardexOperacion" id="KardexOperacion" [(ngModel)]="kardex.operacion" #operacion="ngModel" required>
+                <option value="" disabled>Seleccione la operacion</option>
+                <option *ngFor="let o of operaciones" [ngValue]="o.id">
+                  {{ o.operacion}}
+                </option>
+              </select>
+            </div>
+            <div *ngIf="operacion.invalid && ( (operacion.dirty || operacion.touched) || f1.submitted)" class="alert alert-danger">
+              <div *ngIf="operacion.errors.required">
+                El tipo de operación es requerida
+              </div>
+            </div>
+          </div>
+        <div class="form-group col-md-3">
+          <label>Cantidad</label>
+          <div class="input-group">
+            <input type="number" class="form-control" id="kardexCantidad" name="kardexCantidad" [(ngModel)]="kardex.cantidad" #cantidad="ngModel" required>
+          </div>
+          <div *ngIf="cantidad.invalid && ( (cantidad.dirty || cantidad.touched) || f1.submitted)" class="alert alert-danger">
+            <div *ngIf="cantidad.errors.required">
+              El campo de cantidad es requerida.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row col-md-4">
+
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary m-b-20">Guardar</button>
+      <button type="button" class="btn btn-primary m-b-20" (click)="c('Close click')">Cancelar</button>
+    </div>
+
+
+  </form>
+</ng-template>
+<div class="main-body">
+
+              <div class="page-wrapper">
+                <div class="page-body">
+                  <div class="row">
+
+                    <div class="col-md-6 col-xl-3">
+                      <div class="card seo-card">
+                        <div class="card-block seo-statustic">
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="card tabs-card">
+                        <div class="card-header">
+                            <h5>Productos</h5>
+                        </div>
+                        <div class="card-block p-0">
+                          <div class="tab-content card-block">
+                            <div class="tab-pane active" id="home3" role="tabpanel">
+
+                              <div class="table-responsive">
+                                <a (click)="openModalProducto(modalContentProducto,i)" style="padding-right: 15px;cursor: pointer;"><i class="icofont icofont-plus"></i></a>
+                                <table class="table"  class="table table-striped table-bordered nowrap table-hover">
+                                  <tr>
+                                    <th>Código</th>
+                                    <th>Producto</th>
+                                    <th></th>
+                                  </tr>
+                                  <tr *ngFor="let p of productos; let i = index">
+                                    <td>{{p.code}}</td>
+                                    <td>{{p.product}}</td>
+                                    <td><a (click)="eliminarProducto(i)" style="cursor: pointer;"><i class="icofont icofont-trash"></i></a></td>
+                                  </tr>
+
+                                </table>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="card tabs-card">
+                        <div class="card-header">
+                            <h5>Kardex de productos</h5>
+                        </div>
+                        <div class="card-block p-0">
+                          <div class="tab-content card-block">
+                            <div class="tab-pane active" id="home3" role="tabpanel">
+
+                              <div class="table-responsive">
+                                <a (click)="openModalKardex(modalContentKardex,i)" style="padding-right: 15px;cursor: pointer;"><i class="icofont icofont-plus"></i></a>
+                                <table class="table"  class="table table-striped table-bordered nowrap table-hover">
+                                  <tr>
+                                    <th>Producto</th>
+                                    <th>Stock Inicial</th>
+                                    <th>Operación</th>
+                                    <th>Cantidad</th>
+                                    <th>Stock Final</th>
+
+                                  </tr>
+                                  <tr *ngFor="let k of kardexList; let i = index">
+                                    <td>{{k.producto}}</td>
+                                    <td>{{k.stockInicial}}</td>
+                                    <td>{{k.operacion}}</td>
+                                    <td>{{k.cantidad}}</td>
+                                    <td>{{k.stockFinal}}</td>
+                                  </tr>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="styleSelector"> </div>
+            </div>

@@ -1,0 +1,103 @@
+<section class="registration text-center">
+  <!-- Container-fluid starts -->
+  <div class="container"  style="background-color: #FFFFFF">
+
+    <div style="cursor: pointer" *ngIf="mensajeError" class="alert background-danger alert-dismissable" (click)="mensajeError = null">
+      {{mensajeError}}
+      <a class="close">&times;</a>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <!-- Authentication card start -->
+        <div class="login-card card-block auth-body mr-auto ml-auto">
+          <form class="md-float-material" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+            <div class="text-center">
+              <img src="assets/images/logo_taran.png" alt="logo_taran.png" style="display: inline;">
+            </div>
+            <div class="auth-box">
+              <div class="row m-b-20">
+                <div class="col-md-12">
+                  <label>
+                    <h3 class="text-left txt-primary">Registro</h3>
+                  </label>
+                </div>
+              </div>
+              <hr/>
+
+              <div class="form-row col-md-12">
+                  <h6 class="text-left txt-primary" style="color: black">Correo o usuario</h6>
+                  <div class="input-group">
+                    <span class="input-group-addon" style="padding-top:6px;width:15px;"><i class="icofont icofont-ui-email"></i></span>
+                    <input type="email" class="form-control" placeholder="Digite su correo o usuario" id="username" name="username" [(ngModel)]="model.username" #username="ngModel" required>
+                  </div>
+                  <div class="alert alert-info" *ngIf="username.invalid && ( (username.dirty || username.touched) || isSubmitted)" class="alert alert-danger">
+                      El correo o usuario es requerido.
+                  </div>
+              </div>
+			  <div class="form-row col-md-12">
+
+                  <h6 class="text-left txt-primary" style="color: black">Clave</h6>
+                  <div class="input-group">
+                    <span class="input-group-addon" style="padding-top:6px;width:15px;"><i class="icofont icofont-ui-password"></i></span>
+                    <input type="password" class="form-control" placeholder="Digite su clave" id="password" name="password" [(ngModel)]="model.password" #password="ngModel" required>
+                  </div>
+                  <div class="alert alert-info" *ngIf="password.invalid && ( (password.dirty || password.touched) || isSubmitted)" class="alert alert-danger">
+                    La clave es requerida.
+                  </div>
+              </div>
+			  
+			   <div class="form-row col-md-12">
+
+                  <h6 class="text-left txt-primary" style="color: black">Confirmar Clave</h6>
+                  <div class="input-group">
+                    <span class="input-group-addon" style="padding-top:6px;width:15px;"><i class="icofont icofont-ui-password"></i></span>
+                    <input type="password" class="form-control" placeholder="Digite su clave" id="confirmpassword" name="confirmpassword" [(ngModel)]="model.confirmpassword" #confirmpassword="ngModel" required>
+                  </div>
+                  <div class="alert alert-info" *ngIf="confirmpassword.invalid && ( (confirmpassword.dirty || confirmpassword.touched) || isSubmitted)" class="alert alert-danger">
+                    La clave es requerida.
+                  </div>
+              </div>
+			  
+			  <div class="form-row col-md-12">
+
+                  <h6 class="text-left txt-primary" style="color: black">Marca</h6>
+                  <div class="input-group">
+                    <span class="input-group-addon" style="padding-top:6px;width:15px;"><i class="icofont icofont-ui-tag"></i></span>
+                    <input type="text" class="form-control" placeholder="Digite su clave" id="brand" name="brand" [(ngModel)]="model.brand" #brand="ngModel" required>
+                  </div>
+                  <div class="alert alert-info" *ngIf="brand.invalid && ( (brand.dirty || brand.touched) || isSubmitted)" class="alert alert-danger">
+                    La marca es requerida.
+                  </div>
+              </div>
+
+
+
+              <div class="row m-t-30">
+                <div class="col-md-12">
+                  <button type="submit" (click)="isSubmitted = true" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">Registrarme</button>
+                </div>
+              </div>
+              <hr/>
+             <!--  <div class="row">
+                <div class="col-md-10">
+                  <p class="text-inverse text-left m-b-0">Thank you and enjoy our website.</p>
+                  <p class="text-inverse text-left"><b>Your Authentication Team</b></p>
+                </div>
+                <div class="col-md-2">
+                  <img src="assets/images/auth/Logo-small-bottom.png" alt="small-logo.png">
+                </div>
+              </div> -->
+
+            </div>
+          </form>
+          <!-- end of form -->
+        </div>
+        <!-- Authentication card end -->
+      </div>
+      <!-- end of col-sm-12 -->
+    </div>
+    <!-- end of row -->
+  </div>
+  <!-- end of container-fluid -->
+</section>

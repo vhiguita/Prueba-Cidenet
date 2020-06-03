@@ -1,0 +1,120 @@
+<div id="pcoded" class="pcoded"
+     [attr.nav-type]="navType"
+     [attr.theme-layout]="themeLayout"
+     [attr.vertical-placement]="verticalPlacement"
+     [attr.vertical-layout]="verticalLayout"
+     [attr.pcoded-device-type]="pcodedDeviceType"
+     [attr.vertical-nav-type]="verticalNavType"
+     [attr.vertical-effect]="verticalEffect"
+     [attr.vnavigation-view]="vnavigationView"
+     [attr.fream-type]="freamType"
+     [attr.sidebar-img]="sidebarImg"
+     [attr.sidebar-img-type]="sidebarImgType"
+     [attr.layout-type]="layoutType"
+     (window:resize)="onResize($event)"
+  >
+  <div class="pcoded-overlay-box"></div>
+  <div class="pcoded-container navbar-wrapper">
+    <!--<app-cabezote></app-cabezote>-->
+    <nav class="navbar header-navbar pcoded-header">
+      <div class="navbar-wrapper">
+        <div class="navbar-logo">
+          <!--<a class="mobile-menu" id="mobile-collapse" href="javascript:" (click)="toggleOpened()" [attr.exclude]="'#main_navbar'" (clickOutside)="onClickedOutsideSidebar($event)" [hidden]="btnInvisible">
+                <i class="icon-menu"></i>
+          </a>-->
+          <div class="mobile-search">
+               <div class="header-search">
+                   <div class="main-search morphsearch-search">
+                       <div class="input-group">
+                           <span class="input-group-addon search-close"><i class="ti-close"></i></span>
+                           <input type="text" class="form-control" placeholder="Enter Keyword">
+                           <span class="input-group-addon search-btn"><i class="ti-search"></i></span>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <!--<a href="index.html">
+               <img class="img-fluid" src="assets/images/logo_taran_header.png" alt="Theme-Logo" />
+           </a>-->
+          <a class="mobile-options">
+            <i class="ti-more"></i>
+          </a>
+        </div>
+        <div class="navbar-container container-fluid">
+          <ul class="nav-left">
+            <li>
+                <div class="sidebar_toggle"><a href="javascript:void(0)"><i class="ti-menu"></i></a></div>
+            </li>
+            <!--<li>
+              <a href="#!" onclick="javascript:toggleFullScreen()" data-toggle="tooltip" title="Pantalla completa!" data-placement="right">
+                <i class="ti-fullscreen"></i>
+              </a>
+            </li>-->
+          </ul>
+          <ul class="nav-right">
+            <li class="user-profile header-notification">
+              <a style="cursor: pointer">
+                <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+               <!--<span>{{obtenerNombreUsuario()}} - {{obtenerCodigoPerfilUsuario()}}</span>-->
+                <i class="ti-angle-down"></i>
+              </a>
+              <ul class="show-notification profile-notification" style="display: none;">
+                <li>
+                  <a [routerLink]="['/login']">
+                    <i class="ti-layout-sidebar-left"></i> Salida segura
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="pcoded-main-container">
+      <div class="pcoded-wrapper">
+        <!--<app-menu></app-menu>-->
+        <nav
+                 id="main_navbar"
+                 class="pcoded-navbar"
+                 (clickOutside)="onClickedOutsideSidebar($event)"
+                 [attr.exclude]="'#mobile-collapse'"
+                 [attr.pcoded-header-position]="pcodedHeaderPosition"
+                 [attr.navbar-theme]="navBarTheme"
+                 [attr.active-item-theme]="activeItemTheme"
+                 sub-item-theme="theme2"
+                 active-item-style="style0"
+                 [attr.pcoded-navbar-position]="pcodedSidebarPosition"
+          >
+          <!--<div class="sidebar_toggle">
+            <a href="#">
+              <i class="icon-close icons"></i>
+            </a>
+          </div>-->
+          <div class="pcoded-inner-navbar main-menu">
+            <div class="pcoded-navigation-label" style="margin-top: 20px">
+              Administración...
+            </div>
+          </div>
+        </nav>
+        <div class="pcoded-content">
+          <div class="pcoded-inner-content">
+            <!-- Main-body start -->
+              <!-- <app-alert style="height: 700px"></app-alert> -->
+            <div class="main-body">
+              <div class="page-wrapper">
+
+                <router-outlet></router-outlet>
+
+              </div>
+              <div id="styleSelector"> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<app-ie-warning></app-ie-warning>
